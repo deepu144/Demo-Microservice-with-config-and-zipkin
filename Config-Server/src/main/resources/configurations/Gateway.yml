@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: student
+          uri: lb://STUDENT
+          predicates:
+            - Path=/student/**
+        - id: school
+          uri: lb://SCHOOL
+          predicates:
+            - Path=/school/**
+server:
+  port: 8222
+management:
+  tracing:
+    sampling:
+      probability: 1.0
